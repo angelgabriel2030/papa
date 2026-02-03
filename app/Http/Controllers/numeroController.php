@@ -37,7 +37,7 @@ class NumeroController extends Controller
                         ->orderBy('id', 'desc')
                         ->first();
 
-        $acumulado = $ultimo ? $ultimo->numero_acumulado + $request->numero : $request->numero;
+        $acumulado = $ultimo ? $ultimo->numero_acumulado: $request->numero;
 
         $numero = Numero::create([
             'ip_envia'         => $ipEnvia,
