@@ -12,22 +12,16 @@ class Numero extends Model
     protected $table = 'numeros';
 
     protected $fillable = [
-        'ip_envia',
-        'ip_recibe',
-        'numero_enviado',
-        'numero_acumulado',
-        'estado',
+        'numero_actual',
+        'enviado_por',
+        'recibido_por',
+        'ip_origen',
+        'ip_destino',
     ];
 
-    public function scopePendientePara($query, string $ip)
-    {
-        return $query->where('ip_recibe', $ip)
-                     ->where('estado', 'pendiente');
-    }
-
-    public function marcarRecibido(): void
-    {
-        $this->estado = 'recibido';
-        $this->save();
-    }
+    protected $casts = [
+        'numero_actual' => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }
