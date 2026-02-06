@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('numeros', function (Blueprint $table) {
+        Schema::create('game_state', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_actual')->default(0);
-            $table->string('enviado_por')->nullable(); 
-            $table->string('recibido_por')->nullable(); 
-            $table->string('ip_origen'); 
-            $table->string('ip_destino'); 
+            $table->integer('numero')->default(0);
+            $table->integer('num_max')->default(0);
+            $table->string('ultmia_ip')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('numeros');
+        Schema::dropIfExists('game_state');
     }
 };
